@@ -2,10 +2,9 @@ var path = require('path');
 var express = require('express');
 var React = require('react');
 var renderToString = require('react-dom/server').renderToString;
-var ChatApp = require('./components/ChatApp');
-
 var app = express();
 var server = require('http').createServer(app);
+var io = require('socket.io')(server)
 
 var port = process.env.PORT || 3000;
 var env = process.env.NODE_ENV || 'production';
@@ -16,9 +15,16 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'static')));
 
 app.get('/', function (req, res) {
-  var markup = renderToString(<ChatApp/>);
+  var markup = renderToString(<LoginUI/>);
   return res.render('index', {markup})
 })
+
+io.on('connection', function (socket) {
+  socket.on('chat message', function (msg) {
+    io.emit('chat message', msg);
+  });
+})
+
 
 server.listen(port, function(err){
   if(err){

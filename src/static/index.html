@@ -4,10 +4,36 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Electron Chat App</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
     <div id="main"></div>
     <script src="/js/bundle.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io();
+      socket.on('chat message', function (msg){
+        var ul = document.querySelector(".messages");
+        var li = document.createElement("li");
+        li.appendChild(document.createTextNode(msg));
+        ul.appendChild(li);
+      })
+    </script>
+    <!--<form action="">
+      <input id="m" autocomplete="off" /><button>Send</button>
+    </form>
+    <ul id="messages"></ul>
+    <script>
+      var socket = io();
+      $('form').submit(function(){
+        socket.emit('chat message', $('#m').val());
+        $('#m').val('');
+        return false;
+      });
+      socket.on('chat message', function(msg) {
+        $('#messages').append($('<li>').text(msg));
+      });
+    </script> -->
   </body>
 </html>
