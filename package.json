@@ -6,7 +6,8 @@
   "scripts": {
     "execute": "NODE_ENV=production node_modules/.bin/webpack -p && NODE_ENV=production node_modules/.bin/babel-node --presets 'react' src/server.js",
     "recompile": "NODE_ENV=production node_modules/.bin/webpack -p",
-    "start": "NODE_ENV=production node_modules/.bin/babel-node --presets 'react' src/server.js"
+    "start": "NODE_ENV=production node_modules/.bin/babel-node --presets 'react' src/server.js",
+    "build": "npm install && NODE_ENV=production node_modules/.bin/webpack -p && NODE_ENV=production node_modules/.bin/babel-node --presets 'react' src/server.js"
   },
   "author": "",
   "license": "ISC",

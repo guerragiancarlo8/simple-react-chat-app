@@ -1,7 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var LoginUI = require('./components/LoginUI');
+var ChatApp = require('./components/ChatApp');
 
 window.onload = function () {
-  ReactDOM.render(<LoginUI/>, document.getElementById('main'));
+  ReactDOM.render(<ChatApp/>, document.getElementById('main'));
 }

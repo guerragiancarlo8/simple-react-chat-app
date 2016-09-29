@@ -27,7 +27,7 @@ io.on('connection', function (socket) {
   socket.on('add user', function (username) {
     //store username in session
     socket.username = username;
-    io.emit('add user', socket.username)
+    io.sockets.emit('add user', socket.username)
   });
   socket.on('disconnect', function(username) {
     io.emit('disconnect', socket.username)

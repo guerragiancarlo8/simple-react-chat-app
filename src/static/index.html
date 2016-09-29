@@ -14,7 +14,6 @@
     <script>
       var socket = io();
       //esto tiene q desaparecer pronto
-
       socket.on('chat message', function (msg){
         var ul = document.querySelector(".messages");
         var li = document.createElement("li");
@@ -37,8 +36,6 @@
           li[0].parentNode.removeChild(li[0])
         }
       });
-
-
     </script>
   </body>
 </html>
