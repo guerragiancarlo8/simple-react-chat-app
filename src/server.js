@@ -19,11 +19,21 @@ app.get('/', function (req, res) {
   return res.render('index', {markup})
 })
 
+
 io.on('connection', function (socket) {
   socket.on('chat message', function (msg) {
-    io.emit('chat message', msg);
+    io.emit('chat message', socket.username + ':  ' + msg);
   });
+  socket.on('add user', function (username) {
+    //store username in session
+    socket.username = username;
+    io.emit('add user', socket.username)
+  });
+  socket.on('disconnect', function(username) {
+    io.emit('disconnect', socket.username)
+  })
 })
+
 
 
 server.listen(port, function(err){
@@ -31,4 +41,5 @@ server.listen(port, function(err){
     return console.error(err);
   }
   console.info('Server running on http://localhost:' + port);
+
 });

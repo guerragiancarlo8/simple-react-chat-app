@@ -1,15 +1,19 @@
-.chatArea {
-  height: 100%;
-  padding-bottom: 60px;
-}
-
 .messages {
   height: 100%;
+  width: 75%;
   margin: 0;
   overflow-y: scroll;
   padding: 10px 20px 10px 20px;
 }
-
+#users {
+  height: 100%;
+  width: 25%;
+  margin:0;
+  background: #D3D3D3;
+  position:absolute;
+  right:0;
+  top:0;
+}
 .inputMessage {
   border: 10px solid #000;
   bottom: 0;
@@ -19,5 +23,6 @@
   padding-left: 10px;
   position: absolute;
   right: 0;
-  width: 100%;
+  width: 75%;
+  float: left;
 }
