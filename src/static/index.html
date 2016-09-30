@@ -13,7 +13,7 @@
     <script src="/socket.io/socket.io.js"></script>
     <script>
       var socket = io();
-      //esto tiene q desaparecer pronto
+
       socket.on('chat message', function (msg){
         var ul = document.querySelector(".messages");
         var li = document.createElement("li");
@@ -23,15 +23,18 @@
 
       socket.on('add user', function (msg){
         var ul = document.querySelector(".theusers");
-        var li = document.createElement("li");
-        li.setAttribute('class', msg)
-        li.appendChild(document.createTextNode(msg));
-        ul.appendChild(li);
+        ul.innerHTML = "";
+        for(var i=0; i<msg.length;i++){
+          var li = document.createElement("li");
+          li.setAttribute('class', msg[i])
+          li.appendChild(document.createTextNode(msg[i]));
+          ul.appendChild(li);
+        }
       });
 
-      socket.on('disconnect', function (msg){
+      socket.on('disconnect', function (usr){
         var ul = document.querySelector(".theusers");
-        var li = document.getElementsByClassName(msg);
+        var li = document.getElementsByClassName(usr);
         while(li.length > 0){
           li[0].parentNode.removeChild(li[0])
         }

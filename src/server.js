@@ -19,18 +19,24 @@ app.get('/', function (req, res) {
   return res.render('index', {markup})
 })
 
-
+var clients = [];
 io.on('connection', function (socket) {
+
   socket.on('chat message', function (msg) {
     io.emit('chat message', socket.username + ':  ' + msg);
   });
   socket.on('add user', function (username) {
-    //store username in session
+
     socket.username = username;
-    io.sockets.emit('add user', socket.username)
+    clients.push(socket.username);
+    io.emit('add user', clients);
+
+    //io.sockets.emit('add user', socket.username)
   });
   socket.on('disconnect', function(username) {
-    io.emit('disconnect', socket.username)
+    //clients.splice(clients.indexOf(username), 1);
+    io.emit('disconnect', socket.username);
+
   })
 })
 
