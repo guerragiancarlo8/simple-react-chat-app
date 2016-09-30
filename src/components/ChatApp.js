@@ -1,5 +1,6 @@
 var React = require('react');
-var LoginModal = require('./LoginModal.js');
+var LoginModal = require('./LoginModal');
+var ChatArea = require('./ChatArea');
 
 var ChatApp = React.createClass({
   getInitialState: function () {
@@ -46,20 +47,9 @@ var ChatApp = React.createClass({
           onLoginChange={this.onLoginChange}
           onUserLogin={this.onUserLogin}/>
 
-        <div id="chatArea">
-          <ul className="messages"></ul>
-        </div>
-        <form onSubmit={this.onSubmitMessage}>
-          <input
-              type="text"
-              className="inputMessage"
-              value={this.state.inputValue}
-              placeholder="Start Typing Here..."
-              onChange={this.onInputChange.bind(this)}/>
-        </form>
-        <div id = "users">
-          <ul className="theusers"></ul>
-        </div>
+        <ChatArea onSubmitMessage={this.onSubmitMessage}
+                  inputValue={this.state.inputValue}
+                  onInputChange={this.onInputChange.bind(this)}/>
       </div>
     )
   }

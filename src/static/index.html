@@ -21,13 +21,14 @@
         ul.appendChild(li);
       });
 
-      socket.on('add user', function (msg){
+      socket.on('add user', function (usrs){
         var ul = document.querySelector(".theusers");
+        //we clear current list of users to avoid duplicates
         ul.innerHTML = "";
-        for(var i=0; i<msg.length;i++){
+        for(var i=0; i<usrs.length;i++){
           var li = document.createElement("li");
-          li.setAttribute('class', msg[i])
-          li.appendChild(document.createTextNode(msg[i]));
+          li.setAttribute('class', usrs[i])
+          li.appendChild(document.createTextNode(usrs[i]));
           ul.appendChild(li);
         }
       });
