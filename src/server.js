@@ -5,7 +5,7 @@ var renderToString = require('react-dom/server').renderToString;
 var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io')(server)
-
+var ChatApp = ('../components/ChatApp');
 var port = process.env.PORT || 3000;
 var env = process.env.NODE_ENV || 'production';
 
@@ -15,7 +15,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'static')));
 
 app.get('/', function (req, res) {
-  var markup = renderToString(<LoginUI/>);
+  var markup = renderToString(<ChatApp/>);
   return res.render('index', {markup})
 })
 

@@ -1,13 +1,5 @@
 var React = require('react');
-var Modal = require('react-bootstrap').Modal;
-var Button = require('react-bootstrap').Button;
-var Popover = require('react-bootstrap').Popover;
-var Tooltip = require('react-bootstrap').Tooltip;
-var OverlayTrigger = require('react-bootstrap').OverlayTrigger;
-var FormGroup = require('react-bootstrap').FormGroup;
-var FormControl = require('react-bootstrap').FormControl;
-var ControlLabel = require('react-bootstrap').ControlLabel;
-var HelpBlock = require('react-bootstrap').HelpBlock;
+var LoginModal = require('./LoginModal.js');
 
 var ChatApp = React.createClass({
   getInitialState: function () {
@@ -46,32 +38,16 @@ var ChatApp = React.createClass({
 
     return  (
       <div>
-        <div>
-          <Modal show={this.state.showModal} onHide={this.close}>
-            <Modal.Header closeButton>
-            </Modal.Header>
-            <Modal.Body>
-            <form onSubmit={this.onUserLogin}>
-              <FormGroup
-                controlId="formBasicText"
-                validationState={this.getValidationState()}>
-                <ControlLabel>Working example with validation</ControlLabel>
-                <FormControl
-                  type="text"
-                  value={this.state.value}
-                  placeholder="Enter text"
-                  onChange={this.onLoginChange}
-                />
-                <FormControl.Feedback />
-                <HelpBlock>Nickname Must Be At Least 10 Characters.</HelpBlock>
-              </FormGroup>
-            </form>
-            </Modal.Body>
-            <Modal.Footer>
-            <Button type="submit" onClick={this.onUserLogin}>Submit</Button>
-            </Modal.Footer>
-          </Modal>
-        </div>
+        <LoginModal
+          show={this.state.showModal}
+          close={this.close}
+          onSubmit={this.onUserLogin}
+          validationState={this.getValidationState()}
+          value={this.state.value}
+          onLoginChange={this.onLoginChange}
+          onUserLogin={this.onUserLogin}/>
+
+
         <div id="chatArea">
           <ul className="messages"></ul>
         </div>
