@@ -8,11 +8,20 @@ var FormGroup = require('react-bootstrap').FormGroup;
 var FormControl = require('react-bootstrap').FormControl;
 var ControlLabel = require('react-bootstrap').ControlLabel;
 var HelpBlock = require('react-bootstrap').HelpBlock;
+var PropTypes = require('react').PropTypes;
 
 var LoginModal = React.createClass({
+  propTypes: {
+    show: PropTypes.bool.isRequired,
+    onSubmit: PropTypes.func.isRequired,
+    validationState: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired,
+    onLoginChange: PropTypes.func.isRequired,
+    onUserLogin: PropTypes.func.isRequired
+  },
   render: function () {
     return (
-      <Modal show={this.props.show} onHide={this.props.close}>
+      <Modal show={this.props.show}>
         <Modal.Header closeButton>
         </Modal.Header>
         <Modal.Body>

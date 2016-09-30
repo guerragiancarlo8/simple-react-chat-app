@@ -40,13 +40,11 @@ var ChatApp = React.createClass({
       <div>
         <LoginModal
           show={this.state.showModal}
-          close={this.close}
           onSubmit={this.onUserLogin}
           validationState={this.getValidationState()}
           value={this.state.value}
           onLoginChange={this.onLoginChange}
           onUserLogin={this.onUserLogin}/>
-
 
         <div id="chatArea">
           <ul className="messages"></ul>
